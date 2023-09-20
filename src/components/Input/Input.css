@@ -1,0 +1,33 @@
+.input__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input__label {
+    color: #8B8B8B;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.input__input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #424242;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+    cursor: pointer;
+}
+
+.input__input:focus {
+    outline: none;
+    border-bottom: 1px solid #4285F4;
+}
+
+.input__error {
+    font-size: 10px;
+    font-weight: 400;
+    margin: 6px 0;
+    height: 12px;
+}

@@ -1,0 +1,33 @@
+.title-container {
+    height: 150px;
+    border-bottom: #DADADA 1px solid;
+    display: flex;
+    align-items: flex-end;
+}
+
+.title {
+    color: #FFF;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    margin: 0 0 23px;
+}
+
+@media screen and (max-width: 768px) {
+    .title-container {
+        height: 140px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .title-container {
+        height: 120px;
+    }
+
+    .title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        margin: 0 0 28px;
+    }
+}

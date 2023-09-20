@@ -1,0 +1,116 @@
+.profile {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 155px 0 64px;
+    flex-direction: column;
+}
+
+.profile__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 410px;
+    height: 100%;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.profile__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.profile__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70%;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.profile__inputs-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 100%;
+}
+
+.profile__input-label {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 16px 0;
+}
+
+.profile__input {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 400;
+    background-color: transparent;
+    border: none;
+    text-align: right;
+}
+
+.profile__input:focus {
+    outline: none;
+}
+
+.profile__input:first-of-type {
+    border-bottom: 1px solid #424242;
+}
+
+.profile__input-label:first-of-type {
+    border-bottom: 1px solid #424242;
+}
+
+.profile__inputs-border {
+    height: 1px;
+    background-color: #424242;
+}
+
+.profile__button {
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.profile__logout {
+    color: #EE3465;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+@media screen and (max-width: 800px) {
+    .profile {
+        padding: 307px 0 269px;;
+    }
+
+    .profile__form {
+        height: 74%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .profile {
+        padding: 144px 0 40px;;
+    }
+
+    .profile__container {
+        width: 260px;
+    }
+
+    .profile__form {
+        height: 80.5%;
+    }
+}

@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    height: 74px;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    z-index: 10;
+}
+
+.header_blue {
+    background-color: #073042;
+}
+
+.header_grey {
+    background-color: #202020;
+}
+
+.header__container {
+    width: 1280px;
+    padding: 0 70px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    height: 38px;
+}
+
+
+@media screen and (max-width: 770px) {
+    .header__container {
+        width: 100%;
+        padding: 0 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header__container {
+        padding: 0 14px;
+    }
+}

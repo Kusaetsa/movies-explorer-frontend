@@ -1,0 +1,24 @@
+.root {
+    background-color: #202020;
+    font-family: 'Inter', Arial, sans-serif;
+    box-sizing: border-box;
+    margin: 0 auto;
+    height: 100vh;
+    max-width: 1280px;
+}
+
+.button_hovered {
+    transition: all .2s;
+}
+
+.button_hovered:hover {
+    opacity: .8;
+}
+
+.link_hovered {
+    transition: all .2s; 
+}
+
+.link_hovered:hover {
+    opacity: .7;
+}
