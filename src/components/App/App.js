@@ -17,7 +17,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const location = useLocation();
-  const isExistRoute = ['/', '/movies', '/saved-movies'].includes(location.pathname);
+  const isExistRoute = ['/', '/movies', '/saved-movies', '/profile'].includes(location.pathname);
 
   function handleLogin() {
     setIsLoggedIn(!isLoggedIn);
