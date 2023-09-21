@@ -1,10 +1,10 @@
 .profile {
     display: flex;
     justify-content: space-between;
-    height: 100%;
+    height: 90%;
     box-sizing: border-box;
     align-items: center;
-    padding: 155px 0 64px;
+    padding: 74px 0 70px;
     flex-direction: column;
 }
 
@@ -15,7 +15,6 @@
     width: 410px;
     height: 100%;
     justify-content: space-between;
-    margin-bottom: 16px;
     color: #fff;
 }
 
@@ -32,6 +31,7 @@
     height: 70%;
     justify-content: space-between;
     width: 100%;
+    position: relative;
 }
 
 .profile__inputs-container {
@@ -73,12 +73,53 @@
     background-color: #424242;
 }
 
-.profile__button {
+.profile__buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__edit-button {
+    border: none;
+    cursor: pointer;
     color: #fff;
     background-color: transparent;
-    border: none;
     font-size: 13px;
     font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.profile__edit-button_inactive {
+    display: inline-block;
+}
+
+.profile__edit-button_active {
+    display: none;
+}
+
+.profile__button {
+    width: 410px;
+    height: 45px;
+    border-radius: 3px;
+    border: none;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.profile__button_inactive {
+    color: #C2C2C2;
+    background-color: #F8F8F8;
+    display: flex;
+}
+
+.profile__button_active {
+    background-color: #3456F3;
+    display: flex;
+    color: #fff;
     cursor: pointer;
 }
 
@@ -89,10 +130,20 @@
     font-weight: 500;
 }
 
+.profile__error {
+    position: absolute;
+    bottom: 19%;
+    color: #FF004C;
+    font-size: 11px;
+    display: none;
+}
+
 
 @media screen and (max-width: 800px) {
     .profile {
-        padding: 307px 0 269px;;
+        padding: 236px 0 269px;
+        height: 93%;
+    
     }
 
     .profile__form {
@@ -103,7 +154,8 @@
 
 @media screen and (max-width: 500px) {
     .profile {
-        padding: 144px 0 40px;;
+        padding: 74px 0 40px;
+        height: 90%;
     }
 
     .profile__container {
@@ -111,6 +163,6 @@
     }
 
     .profile__form {
-        height: 80.5%;
+        height: 84%;
     }
 }

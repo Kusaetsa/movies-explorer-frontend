@@ -21,11 +21,11 @@ function handleLikeClick() {
             <div className='movie-card__info'>
                 <h2 className='movie-card__header'>{title}</h2>
                 {isSavedMovies 
-                    ? (<div className='movie-card__close-icon'>{handleSavedMovies}</div>
+                    ? (<button className='movie-card__close-icon'>{handleSavedMovies}</button>
                     ) : (
-                        <div className={`movie-card__like ${cardLikeButtonClassNames}`} onClick={handleLikeClick}>
+                        <button className={`movie-card__like ${cardLikeButtonClassNames}`} onClick={handleLikeClick}>
                             <div className='movie-card__like-mask'></div>
-                        </div>
+                        </button>
                     )
                 }
             </div>

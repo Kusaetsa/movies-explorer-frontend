@@ -1,14 +1,15 @@
 .register {
-    padding: 70px 0;
     display: flex;
     justify-content: center;
     height: 100vh;
     box-sizing: border-box;
+    align-items: center;
 }
 
 .register__container {
     width: 396px;
     color: #FFF;
+    height: 80%;
 }
 
 .register__title {
@@ -67,21 +68,27 @@
 
 
 @media screen and (max-width: 800px) {
-    .register {
-        padding: 232px 0;
+    .register__container {
+        height: 55%;
+    }
+
+    .register__form {
+        height: 67%;
+    }
+    
+    .register__title {
+        margin: 4vh 0;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .register {
-        padding: 56px 0 30px;
-    }
-
     .register__container {
         width: 260px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 90%;
+        padding-top: 31px;
     }
 
     .register__title {

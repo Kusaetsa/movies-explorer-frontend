@@ -45,7 +45,7 @@
 
 @media screen and (max-width: 800px) {
     .not-found {
-        padding-bottom: 222px;
+        padding-bottom: 22vh;
     }
 
     .not-found__container {

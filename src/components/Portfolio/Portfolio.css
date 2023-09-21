@@ -19,6 +19,14 @@
     margin: 0;
 }
 
+.portfolio__link {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    text-decoration: none;
+    align-items: center;
+}
+
 @media screen and (max-width: 768px) {
     .portfolio__item-title {
         font-size: 28px;

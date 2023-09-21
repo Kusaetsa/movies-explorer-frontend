@@ -2,6 +2,7 @@ import './Header.css';
 import React from 'react';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
+import { Link } from 'react-router-dom';
 
 function Header({isLoggedIn, handleLogin}) {
 
@@ -10,9 +11,9 @@ function Header({isLoggedIn, handleLogin}) {
     return(
         <header className={headerClassNames}>
             <div className='header__container'>
-                <a href='/' className='header__main-link'>
+                <Link to='/' className='header__main-link'>
                     <img src={logo} className='header__logo' alt='логотип' />
-                </a>
+                </Link>
                 <Navigation 
                     isLoggedIn={isLoggedIn}
                     handleLogin={handleLogin}

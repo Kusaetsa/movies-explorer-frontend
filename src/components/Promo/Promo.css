@@ -1,6 +1,6 @@
 .promo__banner {
-    height: calc(560px + 74px);
-    padding: 74px 70px 0;
+    height: 560px;
+    padding: 50px 70px 0;
     background-color: #073042;
     display: flex;
     align-items: flex-start;
@@ -18,7 +18,6 @@
     line-height: 52px;
     letter-spacing: -1.6px;
     margin: 0;
-    padding-top: 50px;
 }
 
 .promo__banner-logo {
@@ -38,25 +37,25 @@
 
 @media screen and (max-width: 768px) {
     .promo__banner {
-        height: calc(844px + 74px);
+        height: 844px;
         padding: 0 44px;
         align-items: center
     }
 
     .promo__header {
-        padding-top: 374px;
+        padding-top: 300px;
         text-align: center;
     }
 }
 
 @media screen and (max-width: 500px) {
     .promo__banner {
-        height: calc(630px + 74px);
+        height: 630px;
         padding: 0 10px;
     }
 
     .promo__header {
-        padding-top: 257px;
+        padding-top: 180px;
         font-size: 31px;
         line-height: 39px;
         letter-spacing: -1.24px;

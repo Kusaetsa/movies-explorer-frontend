@@ -17,7 +17,8 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const location = useLocation();
-  const isExistRoute = ['/', '/movies', '/saved-movies', '/profile'].includes(location.pathname);
+  const isHeaderVisible = ['/', '/movies', '/saved-movies', '/profile'].includes(location.pathname);
+  const isFooterVisible = ['/', '/movies', '/saved-movies'].includes(location.pathname);
 
   function handleLogin() {
     setIsLoggedIn(!isLoggedIn);
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <div className="root">
-      {isExistRoute && (
+      {isHeaderVisible && (
         <Header
           isLoggedIn={isLoggedIn}
           handleLogin={handleLogin}
@@ -45,7 +46,7 @@ function App() {
         <Route path='*' element={<NotFound />} />        
       </Routes>
 
-      {isExistRoute && (
+      {isFooterVisible && (
         <Footer />
       )}
 

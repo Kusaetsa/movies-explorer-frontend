@@ -59,6 +59,7 @@
     position: relative;
     top: -2px;
     left: -3px;
+    border: none;
 }
 
 .movie-card__like_off {
@@ -118,5 +119,10 @@
 
     .movie-card__header {
         font-size: 12px;
+    }
+
+    .movie-card__like {
+        top: -6px;
+        left: -1px;
     }
 }

@@ -22,9 +22,9 @@
 
 
 @media screen and (max-width: 800px) {
-.button-more__container {
-    padding: 37px 0 80px;
-}
+    .button-more__container {
+        padding: 50px 0 80px;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -33,6 +33,6 @@
     }
 
     .button-more__container {
-        padding: 68px 0 80px;
+        padding: 60px 0 80px;
     }
 }

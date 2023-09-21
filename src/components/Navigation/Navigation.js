@@ -11,24 +11,26 @@ function Navigation({isLoggedIn, handleLogin}) {
     }
 
     const menuClassNames = ( 
-        !isBurgerOpen ? 'navigation__burger' : 'navigation__close-icon'
-      );
+        !isBurgerOpen ? 'navigation__burger button_hovered' : 'navigation__close-icon button_hovered'
+    );
+
+    const profileInfoClassNames = window.location.pathname === '/' ? 'navigation__profile-icon navigation__profile-icon_blue' : 'navigation__profile-icon navigation__profile-icon_grey';
 
     return(
         <nav className='navigation'>
-                {isLoggedIn 
+                {!isLoggedIn 
                     ? (
                         <>
-                        <div className={menuClassNames} onClick={handleBurgerOpen}></div>
+                        <button className={menuClassNames} onClick={handleBurgerOpen}></button>
                         <div className= {`navigation__container ${isBurgerOpen ? 'navigation__container_side-open' : ''}`}>
                             <div className='navigation__links-container'>
                                 <Link to='/' className='navigation__link link_hovered navigation__link_main'>Главная</Link>                                 
                                 <Link to='/movies' className='navigation__link link_hovered navigation__link_focus'>Фильмы</Link>
                                 <Link to='/saved-movies' className='navigation__link link_hovered'>Сохраненные фильмы</Link>
                             </div>
-                            <Link to='/profile' className='navigation__user-container'>
-                                <p className='navigation__link link_hovered'>Аккаунт</p>
-                                <div className='navigation__profile-icon'></div>
+                            <Link to='/profile' className='navigation__user-container link_hovered'>
+                                <p className='navigation__link'>Аккаунт</p>
+                                <div className={profileInfoClassNames}></div>
                             </Link>
                         </div>
                         </>

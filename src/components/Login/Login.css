@@ -1,14 +1,15 @@
 .login {
-    padding: 70px 0;
     display: flex;
     justify-content: center;
     height: 100vh;
     box-sizing: border-box;
+    align-items: center;
 }
 
 .login__container {
     width: 396px;
     color: #FFF;
+    height: 80%;
 }
 
 .login__title {
@@ -67,21 +68,23 @@
 
 
 @media screen and (max-width: 800px) {
-    .login {
-        padding: 232px 0;
+    .login__container {
+        height: 55%;
+    }
+
+    .login__form {
+        height: 67%;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .login {
-        padding: 56px 0 30px;
-    }
-
     .login__container {
         width: 260px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 90%;
+        padding-top: 31px;
     }
 
     .login__title {
