@@ -59,6 +59,7 @@
     font-size: 13px;
     font-weight: 400;
     text-decoration: none;
+    margin: 0;
 }
 
 .navigation__link_main {
@@ -72,8 +73,11 @@
     text-decoration: none;
 }
 
-.navigation__profile-icon {
+.navigation__user-container .navigation__link {
+    font-size: 14px;
+}
 
+.navigation__profile-icon {
     background-image: url('../../images/profile-icon.svg');
     background-position: center;
     background-repeat: no-repeat;
@@ -95,6 +99,8 @@
     .navigation__burger {
         display: block;
         background-image: url('../../images/burger-icon.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
         width: 44px;
         height: 44px;
         background-color: transparent;
@@ -130,6 +136,7 @@
         padding: 160px 0 90px;
         box-sizing: border-box;
         transition: all .2s;
+        z-index: 5;
     }
 
     .navigation__links-container {
@@ -175,5 +182,10 @@
         align-items: center;
         width: 100%;
         padding: 145px 0 46px;
+    }
+
+    .navigation__burger {
+        width: 36px;
+        transform: translateY(7px);
     }
 }

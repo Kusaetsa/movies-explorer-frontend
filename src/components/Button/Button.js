@@ -5,8 +5,8 @@ function Button({buttonText}) {
 
 
     return (
-        <section className='button-more__container'>
-            <button className='button-more__button button_hovered'>{buttonText}</button>
+        <section className='button'>
+            <button className='button__button button-hovered'>{buttonText}</button>
         </section>
     )
 }

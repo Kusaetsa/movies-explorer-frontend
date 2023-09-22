@@ -1,6 +1,6 @@
-.promo__banner {
-    height: 560px;
-    padding: 50px 70px 0;
+.promo {
+    height: calc(560px + 74px);
+    padding: 124px 70px 0;
     background-color: #073042;
     display: flex;
     align-items: flex-start;
@@ -36,7 +36,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .promo__banner {
+    .promo {
         height: 844px;
         padding: 0 44px;
         align-items: center
@@ -49,7 +49,7 @@
 }
 
 @media screen and (max-width: 500px) {
-    .promo__banner {
+    .promo {
         height: 630px;
         padding: 0 10px;
     }

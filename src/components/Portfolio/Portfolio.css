@@ -1,4 +1,4 @@
-.portfolio__item {
+.portfolio {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -6,11 +6,11 @@
     padding: 20px 0;
 }
 
-.portfolio__item:last-of-type {
+.portfolio:last-of-type {
     border-bottom: none;
 }
 
-.portfolio__item-title {
+.portfolio__title {
     color: #FFF;
     font-size: 30px;
     font-weight: 400;
@@ -28,13 +28,13 @@
 }
 
 @media screen and (max-width: 768px) {
-    .portfolio__item-title {
+    .portfolio__title {
         font-size: 28px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .portfolio__item-title {
+    .portfolio__title {
         font-size: 18px;
         line-height: 28px; 
         letter-spacing: -0.72px;

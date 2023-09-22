@@ -7,18 +7,18 @@
     max-width: 1280px;
 }
 
-.button_hovered {
+.button-hovered {
     transition: all .2s;
 }
 
-.button_hovered:hover {
+.button-hovered:hover {
     opacity: .8;
 }
 
-.link_hovered {
+.link-hovered {
     transition: all .2s; 
 }
 
-.link_hovered:hover {
+.link-hovered:hover {
     opacity: .7;
 }

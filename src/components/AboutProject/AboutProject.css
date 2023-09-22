@@ -29,7 +29,7 @@
     margin: 0;
 }
 
-.about-project__progress-line {
+.progress-line {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 36px auto;
@@ -118,7 +118,7 @@
 }
 
 @media screen and (max-width: 400px) {
-    .about-project__progress-line {
+    .progress-line {
         grid-template-columns: 100px 184px;
         grid-template-rows: 35px auto;
         align-self: center;

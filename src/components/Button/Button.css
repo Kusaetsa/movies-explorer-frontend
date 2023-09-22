@@ -1,11 +1,11 @@
-.button-more__container {
+.button {
     display: flex;
     justify-content: center;
     padding: 59px 0 80px;
     align-items: center;
 }
 
-.button-more__button {
+.button__button {
     width: 320px;
     height: 36px;
     border-radius: 6px;
@@ -22,17 +22,17 @@
 
 
 @media screen and (max-width: 800px) {
-    .button-more__container {
+    .button {
         padding: 50px 0 80px;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .button-more__button {
+    .button__button {
         width: 240px;
     }
 
-    .button-more__container {
+    .button {
         padding: 60px 0 80px;
     }
 }

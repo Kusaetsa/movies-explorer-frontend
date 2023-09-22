@@ -18,7 +18,7 @@ function AboutProject() {
                     <p className='about-project__text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
                 </div>
             </div>
-            <div className='about-project__progress-line'>
+            <div className='progress-line'>
                 <div className='progress-line__green-line progress-line__item'>1 неделя</div>
                 <div className='progress-line__grey-line progress-line__item'>4 недели</div>
                 <div className='progress-line__caption progress-line__item'>Back-end</div>

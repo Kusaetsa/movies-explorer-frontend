@@ -1,21 +1,21 @@
 .profile {
     display: flex;
-    justify-content: space-between;
-    height: 90%;
     box-sizing: border-box;
     align-items: center;
-    padding: 74px 0 70px;
     flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+    padding: 4px 0 5.5%;
 }
 
 .profile__container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 410px;
-    height: 100%;
-    justify-content: space-between;
     color: #fff;
+    justify-content: space-between;
+    height: 77%;
+    width: 410px;
 }
 
 .profile__title {
@@ -28,10 +28,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 70%;
-    justify-content: space-between;
-    width: 100%;
     position: relative;
+    height: 71.5%;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .profile__inputs-container {
@@ -76,6 +76,15 @@
 .profile__buttons-container {
     display: flex;
     flex-direction: column;
+    position: relative;
+    width: 100%;
+    align-items: center;
+}
+
+.profile__links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center
 }
 
 .profile__edit-button {
@@ -97,17 +106,19 @@
 }
 
 .profile__button {
-    width: 410px;
+    width: 100%;
     height: 45px;
     border-radius: 3px;
     border: none;
-    display: none;
-    position: absolute;
-    bottom: 0;
-    align-items: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 14px;
     font-weight: 500;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: none;
 }
 
 .profile__button_inactive {
@@ -132,7 +143,7 @@
 
 .profile__error {
     position: absolute;
-    bottom: 19%;
+    bottom: 65px;
     color: #FF004C;
     font-size: 11px;
     display: none;
@@ -141,28 +152,31 @@
 
 @media screen and (max-width: 800px) {
     .profile {
-        padding: 236px 0 269px;
-        height: 93%;
-    
+        padding: 5% 0 0; 
+        justify-content: center;
+    }
+
+    .profile__container {
+        height: 45%;
     }
 
     .profile__form {
-        height: 74%;
+        height: 75%;
     }
 
 }
 
 @media screen and (max-width: 500px) {
     .profile {
-        padding: 74px 0 40px;
-        height: 90%;
+        padding: 33% 0 0px;
     }
 
     .profile__container {
         width: 260px;
+        height: 88%;
     }
 
     .profile__form {
-        height: 84%;
+        height: 84.5%;
     }
 }

@@ -1,7 +1,7 @@
 .login {
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     box-sizing: border-box;
     align-items: center;
 }
@@ -10,16 +10,19 @@
     width: 396px;
     color: #FFF;
     height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .login__title {
     font-size: 24px;
     font-weight: 500;
-    margin: 40px 0;
+    margin: 0;
 }
 
 .login__form {
-    height: 68%;
+    height: 74%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -27,6 +30,11 @@
 }
 
 .login__inputs-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login__buttons-container {
     display: flex;
     flex-direction: column;
 }
@@ -62,18 +70,24 @@
     padding-left: 6px;
 }
 
-.login__logo {
-    max-width: 38px;
+.login__logo-link {
+    height: 38px;
+    width: 38px;
+    background-image: url('../../images/logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
 }
 
 
 @media screen and (max-width: 800px) {
     .login__container {
-        height: 55%;
+        height: 54.5%;
     }
 
     .login__form {
-        height: 67%;
+        height: 74%;
     }
 }
 
@@ -83,12 +97,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 90%;
-        padding-top: 31px;
+        height: 89%;
+        padding-top: 25px;
     }
 
     .login__title {
-        margin: 50px 0 80px;
+        padding-bottom: 13%;
+    }
+
+    .login__form {
+        height: 71%;
     }
 
     .login__button {

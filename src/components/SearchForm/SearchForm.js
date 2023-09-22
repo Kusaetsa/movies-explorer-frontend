@@ -17,7 +17,7 @@ function SearchForm() {
                         placeholder="Фильм" 
                     />
                     <div className='search-form__button-container'>
-                    <button type="submit" className="search-form__button button_hovered" name="button-submit">Найти</button>
+                    <button type="submit" className="search-form__button button-hovered" name="button-submit">Найти</button>
 
                     </div>
                 </form>

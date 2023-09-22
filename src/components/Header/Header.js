@@ -1,6 +1,5 @@
 import './Header.css';
 import React from 'react';
-import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 import { Link } from 'react-router-dom';
 
@@ -11,9 +10,7 @@ function Header({isLoggedIn, handleLogin}) {
     return(
         <header className={headerClassNames}>
             <div className='header__container'>
-                <Link to='/' className='header__main-link'>
-                    <img src={logo} className='header__logo' alt='логотип' />
-                </Link>
+                <Link to='/' className='header__logo-link link-hovered'></Link>
                 <Navigation 
                     isLoggedIn={isLoggedIn}
                     handleLogin={handleLogin}

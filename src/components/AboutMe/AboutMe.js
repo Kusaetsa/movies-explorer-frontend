@@ -17,7 +17,7 @@ function AboutMe() {
                         <p className='about-me__prof'>Фронтенд-разработчик, 33 года</p>
                         <p className='about-me__bio'>Я родилась и живу в Санкт-Петербурге, закончила факультет ИЗО РГПУ им. А.И. Герцена. Замужем. Работала рекламщиком и дизайнером, в 2022 году уволилась с работы и сейчас занимаюсь фрилансом по направлению веб- и графического дизайна, а также веб-разработке.</p>
                     </div>
-                    <a href='https://github.com/Kusaetsa' className='about-me__link link_hovered' target='blank'>Github</a>
+                    <a href='https://github.com/Kusaetsa' className='about-me__link link-hovered' target='blank'>Github</a>
                 </div>
                 <img src={myPhoto} className='about-me__photo' alt='фото'></img>
             </div>

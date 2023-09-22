@@ -1,6 +1,5 @@
 import React from 'react';
 import './Register.css';
-import logo from '../../images/logo.svg';
 import Input from '../Input/Input';
 import { Link } from 'react-router-dom';
 
@@ -9,32 +8,38 @@ function Register() {
     return (
         <section className='register'>
             <div className='register__container'>
-                <img src={logo} className='register__logo' alt='логотип'></img>
+                <Link to='/' className='register__logo-link link-hovered'></Link>
                 <h2 className='register__title'>Добро пожаловать!</h2>   
-                <form className='register__form' method='post' noValidate>
+                <form className='register__form' method='post'>
                     <div className='register__inputs-container'>
                         <Input 
                             id = 'name-input'
                             type = 'text'
+                            placeholder = 'введите имя'
                             labelText = 'Имя'
                         />
                         <Input 
                             id = 'email-input'
                             type = 'email'
+                            placeholder = 'введите email'
                             labelText = 'E-mail'
                         />
                         <Input 
                             id = 'password-input'
                             type = 'password'
+                            placeholder = 'введите пароль'
                             labelText = 'Пароль'
                         />                                           
-                    </div>     
-                    <button type='submit' className='register__button button_hovered' name='button-submit'>Зарегистрироваться</button>
+                    </div>  
+                    <div className='register__buttons-container'>
+                        <button type='submit' className='register__button button-hovered' name='button-submit'>Зарегистрироваться</button>
+                        <div className='register__login-container'>
+                            <p className='register__caption'>Уже зарегистрированы? </p>
+                            <Link to='/signin' className='register__login link-hovered'>Войти</Link>
+                        </div>   
+                    </div>               
                 </form>
-                <div className='register__login-container'>
-                    <p className='register__caption'>Уже зарегистрированы? </p>
-                    <Link to='/signin' className='register__login link_hovered'>Войти</Link>
-                </div>
+
             </div>
         </section>
     )
