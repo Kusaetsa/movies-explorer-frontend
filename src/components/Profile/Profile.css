@@ -152,31 +152,32 @@
 
 @media screen and (max-width: 800px) {
     .profile {
-        padding: 5% 0 0; 
-        justify-content: center;
+        display: block;
+        padding: 310px 0 0;
     }
 
     .profile__container {
-        height: 45%;
+        margin: 0 auto;
+        height: 445px;
     }
 
     .profile__form {
-        height: 75%;
+        height: 335px;
     }
-
 }
+
 
 @media screen and (max-width: 500px) {
     .profile {
-        padding: 33% 0 0px;
+        padding: 144px 0 0px;
     }
 
     .profile__container {
         width: 260px;
-        height: 88%;
+        height: 595px;
     }
 
     .profile__form {
-        height: 84.5%;
+        height: 500px;
     }
 }

@@ -24,7 +24,7 @@ function handleLikeClick() {
                     ? (<button className='movie-card__close-icon button-hovered'>{handleSavedMovies}</button>
                     ) : (
                         <button className={`movie-card__like button-hovered ${cardLikeButtonClassNames}`} onClick={handleLikeClick}>
-                            <div className='movie-card__like-mask'></div>
+                            <span className='movie-card__like-mask'></span>
                         </button>
                     )
                 }

@@ -80,32 +80,45 @@
     display: block;
 }
 
-@media screen and (max-width: 800px) {  
+@media screen and (max-width: 800px) {
+    .register {
+        display: block;
+        padding-top: 232px;
+    }
+
     .register__container {
-        height: 54.5%;
+        margin: 0 auto;
+        height: 560px;
     }
 
     .register__form {
-        height: 74%;
+        height: 413px;
     }
 }
 
 @media screen and (max-width: 500px) {
+    .register {
+        padding-top: 56px;
+    }
+
     .register__container {
         width: 260px;
-        display: flex;
-        flex-direction: column;
+        height: 694px;
         align-items: center;
-        height: 89%;
-        padding-top: 25px;
+    }
+
+    .register__logo-link {
+        margin-bottom: 50px;
+        min-width: 38px;
+        min-height: 38px;
     }
 
     .register__title {
-        padding-bottom: 13%;
+        padding-bottom: 80px;
     }
 
     .register__form {
-        height: 71%;
+        height: 495px;
     }
 
     .register__button {

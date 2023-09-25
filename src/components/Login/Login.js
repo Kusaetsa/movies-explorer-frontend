@@ -30,7 +30,7 @@ function Login() {
                         <button type='submit' className='login__button button-hovered' name='button-submit'>Войти</button>
                         <div className='login__register-container'>
                             <p className='login__caption'>Ещё не зарегистрированы? </p>
-                            <Link to='/signin' className='login__register link-hovered'>Регистрация</Link>
+                            <Link to='/signup' className='login__register link-hovered'>Регистрация</Link>
                         </div>   
                     </div>         
                 </form>
