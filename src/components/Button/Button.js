@@ -1,12 +1,12 @@
 import React from 'react';
 import './Button.css'
 
-function Button({buttonText}) {
+function Button({buttonText, handleLoadMore}) {
 
 
     return (
         <section className='button'>
-            <button className='button__button button-hovered'>{buttonText}</button>
+            <button className='button__button button-hovered' onClick={handleLoadMore}>{buttonText}</button>
         </section>
     )
 }

@@ -2,7 +2,7 @@ import './Navigation.css';
 import React from 'react';
 import { Link } from "react-router-dom";
 
-function Navigation({isLoggedIn, handleLogin}) {
+function Navigation({isLoggedIn}) {
 
     const [isBurgerOpen, setIsBurgerOpen] = React.useState(false);
 
@@ -21,7 +21,7 @@ function Navigation({isLoggedIn, handleLogin}) {
 
     return(
         <nav className='navigation'>
-                {!isLoggedIn 
+                {isLoggedIn 
                     ? (
                         <>
                         <button className={menuClassNames} onClick={handleBurgerOpen}></button>

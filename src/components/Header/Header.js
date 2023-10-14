@@ -13,7 +13,6 @@ function Header({isLoggedIn, handleLogin}) {
                 <Link to='/' className='header__logo-link link-hovered'></Link>
                 <Navigation 
                     isLoggedIn={isLoggedIn}
-                    handleLogin={handleLogin}
                 />
             </div>
         </header>

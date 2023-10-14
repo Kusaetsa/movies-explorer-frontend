@@ -7,5 +7,9 @@
 
 Адрес репозитория: https://github.com/Kusaetsa/movies-explorer-frontend
 
+Ссылка на проект: https://ilikemovies.nomoredomainsicu.ru/ 
+
+Ссылка на пул реквест: 
+
 
 
