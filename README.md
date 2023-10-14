@@ -9,7 +9,7 @@
 
 Ссылка на проект: https://ilikemovies.nomoredomainsicu.ru/ 
 
-Ссылка на пул реквест: 
+Ссылка на пул реквест: https://github.com/Kusaetsa/movies-explorer-frontend/pull/2 
 
 
 
