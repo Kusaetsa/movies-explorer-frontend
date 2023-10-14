@@ -10,7 +10,6 @@ class MainApi {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-
   handleLikeMovie(card, token) {
       return fetch(`${this._url}/movies`, {
         method: 'POST',
@@ -98,7 +97,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  url: 'http://localhost:3001',
+  url: 'https://api.ilikemovies.nomoredomainsicu.ru',
 })
 
 export default mainApi;
