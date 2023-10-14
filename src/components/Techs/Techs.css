@@ -1,0 +1,120 @@
+.techs {
+    padding: 0 70px;
+    background-color: #272727;
+}
+
+.techs__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.56px;
+    padding: 90px 0 100px;
+}
+
+.techs__title {
+    color: #FFF;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+    margin: 0 0 25px;
+}
+
+.techs__text {
+    max-width: 460px;
+    margin: 0 0 100px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.techs__table {
+    display: grid;
+    grid-template-columns: repeat(7, 90px);
+    column-gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.techs__item {
+    width: 90px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #303030;
+    border-radius: 10px;
+    font-size: 14px;
+    letter-spacing: -0.56px;
+}
+
+@media screen and (max-width: 768px) {
+    .techs {
+        padding: 0 50px;
+    }
+
+    .techs__container {
+        padding: 80px 0 90px;
+    }
+
+    .techs__title {
+        margin: 0 0 22px;   
+    }
+
+    .techs__text {
+        margin: 0 0 80px;
+    }
+
+    .techs__table {
+        grid-template-columns: repeat(7, 84px);
+    }
+
+    .techs__item {
+        width: 84px;
+        height: 57px;
+        font-size: 12px;
+        letter-spacing: -0.48px;
+    }
+}
+
+@media screen and (max-width: 666px) {
+    .techs__table {
+        grid-template-columns: repeat(2, 84px);
+        row-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .techs {
+        padding: 0 18px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .techs__container {
+        padding: 46px 0 70px;
+    }
+
+    .techs .title-container {
+        border-bottom: 1px solid #000;
+    }
+
+    .techs__title {
+        font-size: 30px;
+        letter-spacing: -1.2px;
+        margin: 0 0 14px;
+    }
+
+    .techs__text {
+        margin: 0 0 50px;
+        font-size: 11px;
+        line-height: 16px; 
+        letter-spacing: -0.44px;
+        max-width: 292px;
+    }
+
+
+}

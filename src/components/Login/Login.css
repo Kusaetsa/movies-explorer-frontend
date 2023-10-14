@@ -1,0 +1,136 @@
+.login {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.login__container {
+    width: 396px;
+    color: #FFF;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login__title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.login__form {
+    height: 74%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login__inputs-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login__buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login__button {
+    height: 45px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #4285F4;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.login__register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 16px;
+}
+
+.login__caption {
+    margin: 0;
+    color: #8B8B8B;
+}
+
+.login__register {
+    text-decoration: none;
+    color: #4285F4;
+    padding-left: 6px;
+}
+
+.login__logo-link {
+    height: 38px;
+    width: 38px;
+    background-image: url('../../images/logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+}
+
+
+@media screen and (max-width: 800px) {
+    .login {
+        display: block;
+        padding-top: 232px;
+    }
+
+    .login__container {
+        margin: 0 auto;
+        height: 560px;
+    }
+
+    .login__form {
+        height: 413px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .login {
+        padding-top: 56px;
+    }
+    
+    .login__container {
+        width: 260px;
+        height: 694px;
+        align-items: center;
+    }
+
+    .login__logo-link {
+        margin-bottom: 50px;
+        min-width: 38px;
+        min-height: 38px;
+    }
+
+    .login__title {
+        padding-bottom: 80px;
+    }
+
+    .login__form {
+        height: 495px;
+    }
+
+    .login__button {
+        font-size: 12px;
+    }
+
+    .login__register-container {
+        font-size: 12px;
+    }
+
+    .login__register {
+        padding-left: 7px;
+    }
+}

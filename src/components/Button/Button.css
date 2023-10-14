@@ -1,0 +1,38 @@
+.button {
+    display: flex;
+    justify-content: center;
+    padding: 59px 0 80px;
+    align-items: center;
+}
+
+.button__button {
+    width: 320px;
+    height: 36px;
+    border-radius: 6px;
+    background: #2F2F2F;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 800px) {
+    .button {
+        padding: 50px 0 80px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .button__button {
+        width: 240px;
+    }
+
+    .button {
+        padding: 60px 0 80px;
+    }
+}

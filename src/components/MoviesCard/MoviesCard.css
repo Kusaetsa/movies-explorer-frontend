@@ -1,0 +1,128 @@
+@keyframes like-on {
+    from {
+        background-image: linear-gradient(90deg, #EE3465, #a00035);
+    }
+    to {
+        background-image: linear-gradient(90deg, #a00035, #EE3465);
+    }
+    }
+
+.movie-card {
+    width: 270px;
+}    
+
+.movie-card__image-container {
+    width: 100%;
+    height: 151px;
+    background-image: url('../../images/test-film__pic.png');
+    background-size: contain;
+}    
+
+.movie-card__info {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    justify-content: space-between;
+    padding: 14px 0 0;
+    border-bottom: 1px solid #424242;
+    box-sizing: border-box;
+}
+
+.movie-card__header {
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.movie-card__duration {
+    color: #8B8B8B;
+    font-size: 11px;
+    font-weight: 400;
+    margin: 6px 0 0;
+}
+
+.movie-card__like-mask {
+    background-image: url('../../images/like-icon.svg');
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    cursor: pointer;
+}
+
+.movie-card__like {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    position: relative;
+    top: -3px;
+    left: -1px;
+    border: none;
+}
+
+.movie-card__like_off {
+    background-color: #fff;
+}
+
+.movie-card__like_on {
+    background-color: #EE3465;
+}
+
+.movie-card__animation {
+    animation: like-on .08s ease-in-out;
+}
+
+.movie-card__close-icon {
+    background-color: #313131;
+    background-image: url('../../images/close-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 22px;
+    height: 22px;    
+    border-radius: 50%;
+    border: 1px solid #313131;
+    transform: translate(-1px, -1px);
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.movie-card:hover .movie-card__close-icon {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .movie-card__image-container {
+        width: 339px;
+        height: 190px;
+    }
+
+    .movie-card {
+        width: 339px;
+    }
+}
+
+@media screen and (max-width: 765px) {
+    .movie-card__image-container {
+        width: 300px;
+        height: 168px;
+    }
+
+    .movie-card {
+        width: 300px;
+    }
+
+    .movie-card__header {
+        font-size: 12px;
+    }
+
+    .movie-card__like {
+        top: -6px;
+        left: -1px;
+    }
+}
