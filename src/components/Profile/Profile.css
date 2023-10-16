@@ -141,7 +141,6 @@
     height: 45px;
     border-radius: 3px;
     border: none;
-    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
@@ -153,8 +152,8 @@
 }
 
 .profile__button_inactive {
-    color: #C2C2C2;
-    background-color: #F8F8F8;
+    color: #000;
+    background-color: #2F2F2F;
     display: flex;
     cursor: auto;
 }
@@ -176,7 +175,6 @@
 .profile__api-message {
     position: absolute;
     bottom: 65px;
-    color: #FF004C;
     font-size: 11px;
     visibility: hidden;
     opacity: 0;

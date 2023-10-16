@@ -7,8 +7,6 @@ function SavedMovies({
   isLoading,
   isUnsuccessfulSearch,
   handleDislikeMovieClick,
-  setIsShortFilm,
-  isShortFilm,
   handlePopupOpenClick,
   setIsUnsuccessfulSearch }) {
 
@@ -16,17 +14,13 @@ function SavedMovies({
   const [isSavedMoviesList, setIsSavedMoviesList] = React.useState(true); // стейт списка сохраенных фильмов
   const [savedMoviesSearchRequest, setSavedMoviesSearchRequest] = React.useState(''); // стейт запроса по сохраненным фильмам    
   const [foundSavedMovies, setFoundSavedMovies] = React.useState([]); //стейт отфильтрованного массива сохраненных фильмов
+  const [savedMoviesCheckbox, setSavedMoviesCheckbox] = React.useState(false);
+
 
   // поисковый запрос из строки поиска // 
   function handleSavedMoviesSearchRequest(searchRequest) {
     setSavedMoviesSearchRequest(searchRequest);
   }
-
-  // следит за сохраненными фильмами при удалении карточки //
-  React.useEffect(() => {
-    setFoundSavedMovies(savedMovies);
-  }, [savedMovies])
-
 
   // фильтр по сохраеннным фильмам //
   React.useEffect(() => {
@@ -36,7 +30,7 @@ function SavedMovies({
         movie.nameEN.toLowerCase().includes(savedMoviesSearchRequest.toLowerCase())
       );
     });
-    if (isShortFilm) {
+    if (savedMoviesCheckbox) {
       const filteredShortMovies = filteredMovies.filter((movie) => {
         return movie.duration <= 40;
       });
@@ -46,16 +40,15 @@ function SavedMovies({
       filteredMovies.length === 0 ? setIsUnsuccessfulSearch('Ничего не найдено') : setIsUnsuccessfulSearch('');
       setFoundSavedMovies(filteredMovies);
     }
-  }, [savedMoviesSearchRequest, isShortFilm])
-
+  }, [savedMoviesSearchRequest, savedMoviesCheckbox, savedMovies])
 
 
   return (
     <main className='movies'>
       <SearchForm
         onSearchRequest={handleSavedMoviesSearchRequest}
-        setIsShortFilm={setIsShortFilm}
-        isShortFilm={isShortFilm}
+        setIsShortFilm={setSavedMoviesCheckbox}
+        isShortFilm={savedMoviesCheckbox}
         handlePopupOpenClick={handlePopupOpenClick}
         isSavedMoviesList={isSavedMoviesList}
       />

@@ -1,29 +1,27 @@
 import React from 'react';
 import './FilterCheckbox.css'
 
-function FilterCheckbox({ setIsShortFilm, isShortFilm }) { 
-
-    const savedSearchValue = JSON.parse(localStorage.getItem('savedIsShortFilm'));
+function FilterCheckbox({ setIsShortFilm, isShortFilm, isSavedMoviesList }) { 
 
     function handleCheckbox() {
         setIsShortFilm(!isShortFilm);
     }
   
     React.useEffect(() => { //при повторном посещении восстанавливает состояние чекбокса
-
-        if (savedSearchValue === null) {
+        const savedSearchValue = JSON.parse(localStorage.getItem('savedIsShortFilm'));
+        if (savedSearchValue === null || isSavedMoviesList) {
             setIsShortFilm(false);
             return;
         } else {
            setIsShortFilm(savedSearchValue);
         }
-    }, []);
+    }, [isSavedMoviesList]);
 
 
     return (
         <div className='checkbox'>
             <div className='checkbox__container' onClick={handleCheckbox}>
-                <div className={`checkbox__handler ${isShortFilm ? 'checkbox__handler_on' : 'checkbox__handler_off'}`}></div>
+                <div className={`checkbox__handler ${(isShortFilm) ? 'checkbox__handler_on' : 'checkbox__handler_off'}`}></div>
             </div>
             <p className='checkbox__caption'>Короткометражки</p>
         </div>

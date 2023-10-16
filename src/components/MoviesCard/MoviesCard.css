@@ -125,4 +125,9 @@
         top: -6px;
         left: -1px;
     }
+
+    .movie-card__close-icon {
+        visibility: visible;
+        opacity: 1;
+    }
 }

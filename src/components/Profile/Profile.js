@@ -4,11 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/Validation';
 
-function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, setFoundMovies }) {
+function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, setFoundMovies, setApiMessage }) {
 
     const navigate = useNavigate();
     const [isSaveButtonVisible, setIsSaveButtonVisible] = React.useState(false); // стейт видимости сабмита
-    const [isEditButtonActive, setIsEditButtonActive] = React.useState(false); // стейт активности кнопки редактирования
+    const [isInputsActive, setIsInputsActive] = React.useState(false); // стейт активности инпутов
+    const [isEditAndExitButtonsVisible, setIsEditAndExitButtonsVisible] = React.useState(true); //стейт видимости кнопок редактирования и выхода
+    const [isSaveButtonActive, setIsSaveButtonActive] = React.useState(false); // стейт активности сабмита
+
     const { values, handleChange, errors, isValid } = useFormWithValidation();
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -23,14 +26,49 @@ function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, 
     // классы оформления сообщения от апи //
     const messageClassNames = ((profileMessage === 'Данные успешно обновлены') ? 'profile__api-message_succsess' : 'profile__api-message_error');
 
-    // классы кнопки сабмита //
-    const buttonSubmitClassNames = (`${isSaveButtonVisible ? 'profile__button profile__button_active button-hovered' : 'profile__button'} 
-    ${profileMessage === 'При обновлении профиля произошла ошибка' ? 'profile__button_inactive' : ''}`);
+    // классы оформления сабмита //
+    const buttonSubmitClassNames = (` 
+    ${!isSaveButtonActive ?  'profile__button_inactive' :  'profile__button_active button-hovered'}
+    `);
 
-    // переключение видимости кнопки сабмита //
-    function handleSaveButtonVisible() {
-        setIsSaveButtonVisible(!isSaveButtonVisible);
-        document.querySelector('.profile__links-container').style.display = 'none';
+    // управляет активностью инпутов //
+    React.useEffect(() => {
+        const inputsArray = Array.from(document.querySelectorAll('input'));
+        if (isInputsActive) {
+            inputsArray.forEach(element => {
+                element.removeAttribute('disabled');
+            });
+        } else {
+            inputsArray.forEach(element => {
+                element.setAttribute('disabled', 'true');
+            });
+        }
+    }, [isInputsActive])
+    
+    // управляет видимостью кнопок редактирования и выхода //
+    React.useEffect(() => {
+        if (!isEditAndExitButtonsVisible) {
+            document.querySelector('.profile__links-container').style.display = 'none';
+        } else {
+            document.querySelector('.profile__links-container').style.display = 'flex';
+        }
+    }, [isEditAndExitButtonsVisible])
+
+    // активирует инпуты и показывает саабмит //    
+    function handleInputsActive() {
+        setIsInputsActive(true);
+        setIsEditAndExitButtonsVisible(false);
+        setIsSaveButtonVisible(true);
+    }
+
+    // дизейбл сабмита //
+    function handleSaveButtonActive() {
+        const submitButton =  document.querySelector('.profile__button');
+        if (isSaveButtonActive) {
+            submitButton.setAttribute('disabled', 'true');
+        } else {
+            submitButton.removeAttribute('disabled');
+        }
     }
 
     // подтягиваем данные при изменении контекста //
@@ -39,15 +77,20 @@ function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, 
         setEmail(currentUser.email);
     }, [currentUser]);
 
+
     // получение данных из инпутов и их валидация//
     function handleNameChange(event) {
         const namePattern = /^[a-zA-Zа-яА-Я\s-]*$/;
         handleChange(event);
         if (event.target.value !== currentUser.name && namePattern.test(event.target.value)) {
-            setIsEditButtonActive(true);
+            setIsSaveButtonVisible(true);
+            setIsSaveButtonActive(true);
+            handleSaveButtonActive();
             setName(event.target.value);
         } else {
-            setIsEditButtonActive(false)
+            setIsSaveButtonVisible(true);
+            setIsSaveButtonActive(false);
+            handleSaveButtonActive();
         }
     }
 
@@ -55,10 +98,14 @@ function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, 
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
         handleChange(event);
         if (event.target.value !== currentUser.email && emailPattern.test(event.target.value)) {
-            setIsEditButtonActive(true);
+            setIsSaveButtonVisible(true);
+            setIsSaveButtonActive(true);
+            handleSaveButtonActive();
             setEmail(event.target.value);
         } else {
-            setIsEditButtonActive(false)
+            setIsSaveButtonVisible(true);
+            setIsSaveButtonActive(false);
+            handleSaveButtonActive();
         }
     }
 
@@ -70,13 +117,15 @@ function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, 
                 name,
                 email
             });
-            setIsSaveButtonVisible(!isSaveButtonVisible);
-            document.querySelector('.profile__links-container').style.display = 'flex';
-            setIsEditButtonActive(false);
+            setIsSaveButtonVisible(false);
+            setIsSaveButtonActive(false);
+            setIsEditAndExitButtonsVisible(true);
+            setIsInputsActive(false);
             setTimeout(() => {
                 document.querySelector('.profile__api-message').style.animation = 'hide-message 1s linear forwards';
-            }, 4000);
+            }, 2000);
             document.querySelector('.profile__api-message').style.animation = '';
+            setApiMessage('');
         }
     }
 
@@ -88,6 +137,7 @@ function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, 
         setFoundMovies([]);
         setIsLoggedIn(false);
         setCurrentUser({});
+        setApiMessage('');
         navigate('/');
     }
 
@@ -107,6 +157,7 @@ function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, 
                             value={values.name || name || ''}
                             required
                             onChange={handleNameChange}
+                            disabled
                         />
                         <span className='profile__input-error'>{errors.name}</span>
                         <label htmlFor="email-input" className='profile__input-label'>E-mail</label>
@@ -118,19 +169,33 @@ function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, 
                             value={values.email || email || ''}
                             required
                             onChange={handleEmailChange}
+                            disabled
                         />
                         <span className='profile__input-error'>{errors.email}</span>
                     </div>
                     <div className='profile__buttons-container'>
                         <span className={`profile__api-message ${messageClassNames}`}>{profileMessage}</span>
-                        <button type='submit' onClick={handleSubmit} className={buttonSubmitClassNames} name='button-submit'>Сохранить</button>
+                        {
+                            isSaveButtonVisible ?
+                                (
+                                    <button 
+                                    type='submit' 
+                                    onClick={handleSubmit} 
+                                    className={`profile__button ${buttonSubmitClassNames}`}
+                                    name='button-submit'
+                                > Сохранить
+                                </button>
+                                )
+                            : null
+                        }
                         <div className='profile__links-container'>
-                            {isEditButtonActive
-                                ? (<button type='button' className='profile__edit-button profile__edit-button_active button-hovered' name='button-edit' onClick={handleSaveButtonVisible}>
-                                    Редактировать
-                                </button>)
-                                : (<button type='button' className='profile__edit-button profile__edit-button_inactive' name='button-edit'>Редактировать</button>)
-                            }
+                                <button 
+                                    type='button' 
+                                    className='profile__edit-button profile__edit-button_active button-hovered' 
+                                    name='button-edit' 
+                                    onClick={handleInputsActive}
+                                > Редактировать
+                                </button>
                             <Link to='/' className='profile__logout link-hovered' onClick={signOut}>Выйти из аккаунта</Link>
                         </div>
                     </div>

@@ -17,8 +17,8 @@ function Login({ handleLogin, setCurrentUser, isPopupOpen, handlePopupOpenClick,
 
     function handleSubmit(e) {
         e.preventDefault();
+        setIsButtonDisabled(true);
         if (isValid) {
-            handleLogin();
             Auth.authorize({
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
@@ -29,9 +29,11 @@ function Login({ handleLogin, setCurrentUser, isPopupOpen, handlePopupOpenClick,
                         handlePopupOpenClick();
                         return;
                     }
-                    localStorage.setItem("jwt", data.token);
+                    handleLogin();
+                    localStorage.setItem('jwt', data.token);
                     setCurrentUser(data);
-                    navigate("/");
+                    setApiMessage('');
+                    navigate('/movies');
                 })
                 .catch((err) => {
                     if (err === 'Ошибка: 401') {
@@ -51,12 +53,13 @@ function Login({ handleLogin, setCurrentUser, isPopupOpen, handlePopupOpenClick,
     }
 
     React.useEffect(() => {
-        if (isValid) {
+        const noErrorsMessages = Object.values(errors).every((error) => error === '');
+        if (isValid && noErrorsMessages) {
             setIsButtonDisabled(false);
         } else {
             setIsButtonDisabled(true);
         }
-    }, [isValid])
+    }, [isValid, errors])
 
     return (
         <section className='login'>

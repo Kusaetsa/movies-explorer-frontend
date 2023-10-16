@@ -14,7 +14,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 
-import moviesApi from '../../utils/MoviesApi';
+//import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -24,14 +24,12 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(null); //стейт авторизации
   const [isPopupOpen, setIsPopupOpen] = React.useState(false); //состояние попапа с ошибкой
   const [isLoading, setIsLoading] = React.useState(false); //стейт обработки запросов
-  const [searchRequest, setSearchRequest] = React.useState(''); //стейт запроса
   const [foundMovies, setFoundMovies] = React.useState([]); //стейт отфильтрованного массива фильмов
-  const [isShortFilm, setIsShortFilm] = React.useState(false); //стейт чекбокса короткометражек
   const [isUnsuccessfulSearch, setIsUnsuccessfulSearch] = React.useState(''); //неудачный поиск
   const [savedMovies, setSavedMovies] = React.useState([]); //стейт сохраненных фильмов
   const [apiMessage, setApiMessage] = React.useState(''); // вывод сообщений от апи
 
-  const allMovies = JSON.parse(localStorage.getItem('movies'));
+
   const jwt = localStorage.getItem('jwt');
 
   React.useEffect(() => {
@@ -79,11 +77,6 @@ function App() {
     setIsLoggedIn(true);
   }
 
-  // получить запрос из дочернего компонента //
-  function handleSearchRequest(searchRequest) {
-    setSearchRequest(searchRequest);
-  }
-
   // открыть попап с ошибкой //
   function handlePopupOpenClick() {
     setIsPopupOpen(true);
@@ -93,22 +86,6 @@ function App() {
   function closePopup() {
     setIsPopupOpen(false);
   }
-
-  // получить все фильмы //
-  function getAllMoviesFromApi() {
-    setIsLoading(true);
-    moviesApi.getAllMovies()
-      .then((data) => {
-        localStorage.setItem('movies', JSON.stringify(data));
-      })
-      .catch((err) => {
-        setIsUnsuccessfulSearch('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
-        console.log(`Ошибка загрузки фильмов: ${err}`);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      })
-  };
 
   // обновление данных пользователя //
   function handleUpdateUser(data) {
@@ -131,7 +108,6 @@ function App() {
 
   // постановка лайка - оно же добавление фильма в коллекцию //
   function handleLikeMovieClick(movie) {
-    setIsLoading(true);
     mainApi.handleLikeMovie(movie, jwt)
       .then((data) => {
         const relativeImageUrl = new URL(data.image).pathname;
@@ -152,14 +128,10 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка при постановке лайка: ${err}`)
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
   }
 
   // удаление лайка - оно же удаляет фильм из коллекции //
   function handleDislikeMovieClick(movie) {
-    setIsLoading(true);
     mainApi.handleDisikeMovie(movie, jwt)
       .then(
         setSavedMovies((state) =>
@@ -170,43 +142,9 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка при установке дизлайка: ${err}`)
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
   }
 
-  // фильтр по запросу и продолжительности //
-  React.useEffect(() => {
-    if (!allMovies) {
-      getAllMoviesFromApi();
-    }
-    if (!searchRequest) {
-      return;
-    }
-    setIsLoading(true);
-    localStorage.setItem('savedSearchRequest', JSON.stringify(searchRequest));
-    localStorage.setItem('savedIsShortFilm', JSON.stringify(isShortFilm));
-    const filteredMovies = allMovies.filter((movie) => { //массив поиска всех фильмов
-      return (
-        movie.nameRU.toLowerCase().includes(searchRequest.toLowerCase()) ||
-        movie.nameEN.toLowerCase().includes(searchRequest.toLowerCase())
-      );
-    });
-    if (isShortFilm) {
-      const filteredShortMovies = filteredMovies.filter((movie) => { //массив поиска короткометражек
-        return movie.duration <= 40;
-      });
-      filteredShortMovies.length === 0 ? setIsUnsuccessfulSearch('Ничего не найдено') : setIsUnsuccessfulSearch('');
-      setFoundMovies(filteredShortMovies);
-      localStorage.setItem('savedFoundMovies', JSON.stringify(filteredShortMovies));
-    } else {
-      filteredMovies.length === 0 ? setIsUnsuccessfulSearch('Ничего не найдено') : setIsUnsuccessfulSearch('');
-      setFoundMovies(filteredMovies);
-      localStorage.setItem('savedFoundMovies', JSON.stringify(filteredMovies));
-    }
-    setIsLoading(false);
-  }, [isShortFilm, searchRequest])
-
+ 
   // отображение роутов //
   const location = useLocation();
   const isHeaderVisible = ['/', '/movies', '/saved-movies', '/profile'].includes(location.pathname);
@@ -223,7 +161,7 @@ function App() {
         )}
 
         <Routes>
-          <Route path='/signin' element={<Login
+          <Route path='/signin' element={isLoggedIn ? <Navigate to='/movies' /> : <Login
             handleLogin={handleLogin}
             setCurrentUser={setCurrentUser}
             isPopupOpen={isPopupOpen}
@@ -232,63 +170,60 @@ function App() {
             apiMessage={apiMessage}
             setApiMessage={setApiMessage}
           />} />
-          <Route path='/signup' element={<Register
+          <Route path='/signup' element={isLoggedIn ? <Navigate to='/movies' /> : <Register
             handleLogin={handleLogin}
-            setCurrentUser={setCurrentUser} 
+            setCurrentUser={setCurrentUser}
             isPopupOpen={isPopupOpen}
             handlePopupOpenClick={handlePopupOpenClick}
-            closePopup={closePopup}   
+            closePopup={closePopup}
             apiMessage={apiMessage}
-            setApiMessage={setApiMessage}      
+            setApiMessage={setApiMessage}
           />} />
           <Route path='/' element={<Main />} />
-          
-            <Route
-              path='/movies'
-              element={<ProtectedRouteElement
-                element={Movies}
-                isLoggedIn={isLoggedIn}
-                isLoading={isLoading}
-                handleSearchRequest={handleSearchRequest}
-                setIsShortFilm={setIsShortFilm}
-                isShortFilm={isShortFilm}
-                foundMovies={foundMovies}
-                setFoundMovies={setFoundMovies}
-                isPopupOpen={isPopupOpen}
-                handlePopupOpenClick={handlePopupOpenClick}
-                closePopup={closePopup}
-                isUnsuccessfulSearch={isUnsuccessfulSearch}
-                handleLikeMovieClick={handleLikeMovieClick}
-                handleDislikeMovieClick={handleDislikeMovieClick}
-                savedMovies={savedMovies}
 
-              />}
-            />
-          
-            <Route path='/saved-movies'
-              element={<ProtectedRouteElement
-                element={SavedMovies}
-                isLoading={isLoading}
-                isUnsuccessfulSearch={isUnsuccessfulSearch}
-                handleDislikeMovieClick={handleDislikeMovieClick}
-                savedMovies={savedMovies}
-                setIsShortFilm={setIsShortFilm}
-                isShortFilm={isShortFilm}
-                handlePopupOpenClick={handlePopupOpenClick}
-                setIsUnsuccessfulSearch={setIsUnsuccessfulSearch}
-                isLoggedIn={isLoggedIn}
-              />} />
+          <Route
+            path='/movies'
+            element={<ProtectedRouteElement
+              element={Movies}
+              isLoggedIn={isLoggedIn}
+              isLoading={isLoading}
+              foundMovies={foundMovies}
+              setFoundMovies={setFoundMovies}
+              isPopupOpen={isPopupOpen}
+              handlePopupOpenClick={handlePopupOpenClick}
+              closePopup={closePopup}
+              isUnsuccessfulSearch={isUnsuccessfulSearch}
+              handleLikeMovieClick={handleLikeMovieClick}
+              handleDislikeMovieClick={handleDislikeMovieClick}
+              savedMovies={savedMovies}
+              setIsLoading={setIsLoading}
+              setIsUnsuccessfulSearch={setIsUnsuccessfulSearch}
+            />}
+          />
 
-            <Route path='/profile'
-              element={<ProtectedRouteElement
-                element={Profile}
-                onUpdateUser={handleUpdateUser}
-                profileMessage={apiMessage}
-                setCurrentUser={setCurrentUser}
-                setIsLoggedIn={setIsLoggedIn}
-                isLoggedIn={isLoggedIn}
-                setFoundMovies={setFoundMovies}
-              />} />
+          <Route path='/saved-movies'
+            element={<ProtectedRouteElement
+              element={SavedMovies}
+              isLoading={isLoading}
+              isUnsuccessfulSearch={isUnsuccessfulSearch}
+              handleDislikeMovieClick={handleDislikeMovieClick}
+              savedMovies={savedMovies}
+              handlePopupOpenClick={handlePopupOpenClick}
+              setIsUnsuccessfulSearch={setIsUnsuccessfulSearch}
+              isLoggedIn={isLoggedIn}
+            />} />
+
+          <Route path='/profile'
+            element={<ProtectedRouteElement
+              element={Profile}
+              onUpdateUser={handleUpdateUser}
+              profileMessage={apiMessage}
+              setCurrentUser={setCurrentUser}
+              setIsLoggedIn={setIsLoggedIn}
+              isLoggedIn={isLoggedIn}
+              setFoundMovies={setFoundMovies}
+              setApiMessage={setApiMessage}
+            />} />
 
           <Route path='*' element={<NotFound />} />
         </Routes>

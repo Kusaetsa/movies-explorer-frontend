@@ -17,6 +17,7 @@ function Register({ handleLogin, setCurrentUser, isPopupOpen, handlePopupOpenCli
 
     function handleSubmit(e) {
         e.preventDefault();
+        setIsButtonDisabled(true);
         if (isValid) {
             Auth.register({
                 name: nameRef.current.value,
@@ -62,12 +63,13 @@ function Register({ handleLogin, setCurrentUser, isPopupOpen, handlePopupOpenCli
     }
 
     React.useEffect(() => {
-        if (isValid) {
-            setIsButtonDisabled(false);
+        const noErrorsMessages = Object.values(errors).every((error) => error === '');
+        if (isValid && noErrorsMessages) {
+          setIsButtonDisabled(false);
         } else {
-            setIsButtonDisabled(true);
+          setIsButtonDisabled(true);
         }
-    }, [isValid])
+      }, [isValid, errors]);
 
     return (
         <section className='register'>

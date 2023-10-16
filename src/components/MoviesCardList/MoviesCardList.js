@@ -13,9 +13,6 @@ function MoviesCardList({
     savedMovies,
     isSavedMoviesList }) {
 
-    const moviesContainerClassNames = (
-        (isSavedMoviesList ? 'movies-list__container movies-list__saved-height' : 'movies-list__container')
-    );
 
     function durationInHours(duration) {
         const hours = Math.floor(duration / 60);
@@ -30,7 +27,7 @@ function MoviesCardList({
             />
             {isUnsuccessfulSearch ? <div className='movie-list__message'>{isUnsuccessfulSearch}</div> : null}
 
-            <div className={moviesContainerClassNames}>
+            <div className='movies-list__container'>
                 {
                     cards.slice(0, showMovies).map((card) => (
                         <MoviesCard

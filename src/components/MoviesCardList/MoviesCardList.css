@@ -67,10 +67,6 @@
         row-gap: 34px;
     }
 
-    .movies-list__saved-height {
-        max-height: calc(280px * 2);
-    }
-
     .movies-list__devider {
         height: 120px;
     }

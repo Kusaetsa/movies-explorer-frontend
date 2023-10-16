@@ -3,7 +3,12 @@ import searchIcon from '../../images/search-icon.svg';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css'
 
-function SearchForm({ onSearchRequest, setIsShortFilm, isShortFilm, handlePopupOpenClick, isSavedMoviesList }) {
+function SearchForm({ 
+    onSearchRequest, 
+    setIsShortFilm, 
+    isShortFilm, 
+    handlePopupOpenClick, 
+    isSavedMoviesList  }) {
 
     const searchFormRef = React.useRef();
 
@@ -21,6 +26,7 @@ function SearchForm({ onSearchRequest, setIsShortFilm, isShortFilm, handlePopupO
             }
         } 
         sendSearchRequest(searchFormRef.current.value);
+        localStorage.setItem('savedSearchRequest', JSON.stringify(searchFormRef.current.value));
     }
 
     React.useEffect(() => { //при повторном посещении восстанавливаем запрос в поисковой строке
@@ -54,6 +60,7 @@ function SearchForm({ onSearchRequest, setIsShortFilm, isShortFilm, handlePopupO
                 <FilterCheckbox 
                     setIsShortFilm={setIsShortFilm}
                     isShortFilm={isShortFilm}
+                    isSavedMoviesList={isSavedMoviesList}
                 />
             </div>
             <div className='search-form__border'></div>

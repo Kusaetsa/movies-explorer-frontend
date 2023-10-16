@@ -1,6 +1,6 @@
 import './Navigation.css';
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Navigation({isLoggedIn}) {
 
@@ -27,14 +27,14 @@ function Navigation({isLoggedIn}) {
                         <button className={menuClassNames} onClick={handleBurgerOpen}></button>
                         <div className= {`navigation__container ${isBurgerOpen ? 'navigation__container_side-open' : ''}`}>
                             <div className='navigation__links-container'>
-                                <Link to='/' className='navigation__link link-hovered navigation__link_main'>Главная</Link>                                 
-                                <Link to='/movies' className='navigation__link link-hovered navigation__link_focus'>Фильмы</Link>
-                                <Link to='/saved-movies' className='navigation__link link-hovered'>Сохраненные фильмы</Link>
+                                <NavLink to='/' className={({isActive}) => `${isActive ? 'navigation__link_active navigation__link_focus navigation__link_main' : 'navigation__link link-hovered navigation__link_main'}`}>Главная</NavLink>                                 
+                                <NavLink to='/movies' className={({isActive}) => `${isActive ? 'navigation__link_active navigation__link_focus' : 'navigation__link link-hovered'}`}>Фильмы</NavLink>
+                                <NavLink to='/saved-movies' className={({isActive}) => `${isActive ? 'navigation__link_active navigation__link_focus' : 'navigation__link link-hovered'}`}>Сохраненные фильмы</NavLink>
                             </div>
-                            <Link to='/profile' className='navigation__user-container link-hovered'>
+                            <NavLink to='/profile' className={({isActive}) => `${isActive ? 'navigation__link_active navigation__user-container navigation__link_focus' : 'navigation__user-container link-hovered'}`}>
                                 <p className='navigation__link'>Аккаунт</p>
                                 <div className={profileInfoClassNames}></div>
-                            </Link>
+                            </NavLink>
                         </div>
                         </>
                     ) : (

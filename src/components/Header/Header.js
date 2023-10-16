@@ -3,7 +3,7 @@ import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import { Link } from 'react-router-dom';
 
-function Header({isLoggedIn, handleLogin}) {
+function Header({isLoggedIn}) {
 
     const headerClassNames = window.location.pathname === '/' ? 'header header_blue' : 'header header_grey';
 

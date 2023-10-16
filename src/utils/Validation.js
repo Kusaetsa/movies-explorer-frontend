@@ -26,13 +26,13 @@ export function useFormWithValidation() {
         errorMessage = 'Имя может содержать только латиницу, кириллицу, пробел или дефис';
       }
     }
-    setErrors({ ...errors, [name]: errorMessage});
+
     setValues({...values, [name]: value});
+    setErrors({ ...errors, [name]: errorMessage});
     setIsValid(target.closest('form').checkValidity());
-
   };
-  
 
+  
   const resetForm = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
       setValues(newValues);
