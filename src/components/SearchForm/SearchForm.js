@@ -26,7 +26,7 @@ function SearchForm({
             }
         } 
         sendSearchRequest(searchFormRef.current.value);
-        localStorage.setItem('savedSearchRequest', JSON.stringify(searchFormRef.current.value));
+    //    localStorage.setItem('savedSearchRequest', JSON.stringify(searchFormRef.current.value));
     }
 
     React.useEffect(() => { //при повторном посещении восстанавливаем запрос в поисковой строке
@@ -61,6 +61,7 @@ function SearchForm({
                     setIsShortFilm={setIsShortFilm}
                     isShortFilm={isShortFilm}
                     isSavedMoviesList={isSavedMoviesList}
+                 //   handleIsShortFilm={handleIsShortFilm}
                 />
             </div>
             <div className='search-form__border'></div>

@@ -13,7 +13,6 @@ function MoviesCardList({
     savedMovies,
     isSavedMoviesList }) {
 
-
     function durationInHours(duration) {
         const hours = Math.floor(duration / 60);
         const minutes = duration % 60;

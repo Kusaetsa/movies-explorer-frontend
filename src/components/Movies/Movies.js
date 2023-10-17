@@ -4,6 +4,18 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Button from '../Button/Button';
 import ErrorPopup from '../ErrorPopup/ErrorPopup';
 import moviesApi from '../../utils/MoviesApi';
+import { LARGE_SCREEN, 
+  MIDDLE_SCREEN, 
+  TABLET_SCREEN, 
+  MOBILE_SCREEN, 
+  FOUR_COLUMNS, 
+  THREE_COLUMNS, 
+  TWO_COLUMNS, 
+  ONE_COLUMN, 
+  FOUR_IN_ROW, 
+  THREE_IN_ROW, 
+  TWO_IN_ROW,
+  SHORT_FILM_DURATION  } from '../../utils/constants';
 
 function Movies({
   isLoading,
@@ -19,14 +31,17 @@ function Movies({
   setIsLoading,
   setIsUnsuccessfulSearch }) {
 
-  const [searchRequest, setSearchRequest] = React.useState(''); //стейт запроса
+  const savedIsShortFilm = JSON.parse(localStorage.getItem('savedIsShortFilm')); // сохраненный чекбокс
+  const savedSearchRequest = JSON.parse(localStorage.getItem('savedSearchRequest')); // сохраненный запрос
+
+  const [searchRequest, setSearchRequest] = React.useState(savedSearchRequest); //стейт запроса
   const [showMovies, setShowMovies] = React.useState(0); //количество фильмов на странице
   const [cardsPerLoad, setCardsPerLoad] = React.useState(0); //количество карточек в загрузке
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth); //текущая ширина экрана
   const [isbuttonMoreVisible, setIsButtonMoreVisible] = React.useState(false); //стейт видимости кнопки
-  const [isShortFilm, setIsShortFilm] = React.useState(false); //стейт чекбокса короткометражек
+  const [isShortFilm, setIsShortFilm] = React.useState(savedIsShortFilm); //стейт чекбокса короткометражек
 
-  let allMovies = JSON.parse(localStorage.getItem('movies'));
+  let allMovies = JSON.parse(localStorage.getItem('movies')); // база фильмов
 
   // получает запрос из дочернего компонента //
   function handleSearchRequest(searchRequest) {
@@ -43,7 +58,7 @@ function Movies({
     });
     if (isShortFilm) {
       const filteredShortMovies = filteredMovies.filter((movie) => { //массив поиска короткометражек
-        return movie.duration <= 40;
+        return movie.duration <= SHORT_FILM_DURATION;
       });
       filteredShortMovies.length === 0 ? setIsUnsuccessfulSearch('Ничего не найдено') : setIsUnsuccessfulSearch('');
       setFoundMovies(filteredShortMovies);
@@ -54,12 +69,13 @@ function Movies({
       localStorage.setItem('savedFoundMovies', JSON.stringify(filteredMovies));
       handleResize();
     }
+    localStorage.setItem('savedSearchRequest', JSON.stringify(searchRequest));
     localStorage.setItem('savedIsShortFilm', JSON.stringify(isShortFilm));
   }
 
   // фильтрует фильмы и получает базу при первом поиске //
   React.useEffect(() => {
-    if (searchRequest) {
+    if (searchRequest || savedIsShortFilm !== null) {
       if (allMovies === null) {
         setIsLoading(true);
         moviesApi.getAllMovies()
@@ -80,26 +96,24 @@ function Movies({
       } else {
         filterMovies();
       }
-    } else {
-      return;
     }
   }, [searchRequest, isShortFilm])
 
   // счетчик изменения ширины //
   function handleResize() {
     setWindowWidth(window.innerWidth);
-    if (windowWidth >= 1180) {
-      setShowMovies(16);
-      setCardsPerLoad(4);
-    } else if (windowWidth >= 1001 && windowWidth <= 1180) {
-      setShowMovies(9);
-      setCardsPerLoad(3);
-    } else if (windowWidth >= 768 && windowWidth <= 1000) {
-      setShowMovies(8);
-      setCardsPerLoad(2);
-    } else if (windowWidth >= 320 && windowWidth <= 765) {
-      setShowMovies(5);
-      setCardsPerLoad(2);
+    if (windowWidth >= LARGE_SCREEN) {
+      setShowMovies(FOUR_COLUMNS);
+      setCardsPerLoad(FOUR_IN_ROW);
+    } else if (windowWidth >= MIDDLE_SCREEN && windowWidth <= LARGE_SCREEN) {
+      setShowMovies(THREE_COLUMNS);
+      setCardsPerLoad(THREE_IN_ROW);
+    } else if (windowWidth >= TABLET_SCREEN && windowWidth <= MIDDLE_SCREEN) {
+      setShowMovies(TWO_COLUMNS);
+      setCardsPerLoad(TWO_IN_ROW);
+    } else if (windowWidth >= MOBILE_SCREEN && windowWidth <= TABLET_SCREEN) {
+      setShowMovies(ONE_COLUMN);
+      setCardsPerLoad(TWO_IN_ROW);
     }
   }
 
@@ -140,7 +154,6 @@ function Movies({
 
   //определяет видимость кнопки Еще //
   React.useEffect(() => {
-
     if (foundMovies.length > showMovies) {
       setIsButtonMoreVisible(true);
     } else {
@@ -155,6 +168,7 @@ function Movies({
         setIsShortFilm={setIsShortFilm}
         isShortFilm={isShortFilm}
         handlePopupOpenClick={handlePopupOpenClick}
+      // handleIsShortFilm={handleIsShortFilm}
       />
       <MoviesCardList
         cards={foundMovies}

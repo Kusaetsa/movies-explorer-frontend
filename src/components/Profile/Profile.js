@@ -134,6 +134,7 @@ function Profile({ onUpdateUser, profileMessage, setCurrentUser, setIsLoggedIn, 
         localStorage.removeItem('savedSearchRequest');
         localStorage.removeItem('savedIsShortFilm');
         localStorage.removeItem('savedFoundMovies');
+      //  localStorage.removeItem('movies');
         setFoundMovies([]);
         setIsLoggedIn(false);
         setCurrentUser({});
