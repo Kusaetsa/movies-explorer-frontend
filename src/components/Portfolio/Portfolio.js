@@ -7,7 +7,7 @@ function Portfolio({portfolioItem, portfolioLink}) {
     
     return (
         <li className='portfolio'>
-            <a href={portfolioLink} className='portfolio__link link-hovered' target="blank">
+            <a href={portfolioLink} className='portfolio__link link-hovered' target='blank'>
                 <h4 className='portfolio__title'>{portfolioItem}</h4>
                 <img src={arrow} alt='перейти по ссылке' className='portfolio__link-image'/>
             </a>

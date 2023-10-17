@@ -1,31 +1,57 @@
 import React from 'react';
 import './MoviesCard.css'
 
+function MoviesCard({
+    card,
+    title,
+    picture,
+    duration,
+    trailerLink,
+    handleLikeMovieClick,
+    handleDislikeMovieClick,
+    isSavedMoviesList,
+    savedMovies,
+    }) {
 
-function MoviesCard({ card, title, duration, isLiked, handleLike, isSavedMovies, handleSavedMovies }) {
+    let isLiked = savedMovies.some((movie) => movie.id === card.id);    
 
-const [isThisCardLike, setisThisCardLike] = React.useState(isLiked);
+    // добавляет _id к ранее сохраненным карточкам, чтобы их можно было удалять //
+    React.useEffect(() => {
+        const isThisMovieSaved = savedMovies.find((movie) => movie.id === card.id);
+        if (isThisMovieSaved) {
+            card._id = isThisMovieSaved._id;
+        } else {
+            card._id = null;
+        }
+    }, [savedMovies])
 
-const cardLikeButtonClassNames = ( 
-  isThisCardLike ? 'movie-card__like_on movie-card__animation' : 'movie-card__like_off'
-);
 
-function handleLikeClick() {
-    setisThisCardLike(!isThisCardLike);
-    handleLike(card);
-}
+    function handleLikeClick() { //поставить лайк + добавить фильм в коллекцию
+        handleLikeMovieClick(card);
+    }
+
+    function handleDisLikeClick() { //убрать лайк + удалить фильм из коллекции
+        handleDislikeMovieClick(card);
+    } 
 
     return (
         <article className='movie-card'>
-            <div className='movie-card__image-container'></div>
+            <a style={{ backgroundImage: `url(https://api.nomoreparties.co/${picture})` }} href={trailerLink} className='movie-card__image-container'> </a>
             <div className='movie-card__info'>
                 <h2 className='movie-card__header'>{title}</h2>
-                {isSavedMovies 
-                    ? (<button className='movie-card__close-icon button-hovered'>{handleSavedMovies}</button>
+                {isSavedMoviesList
+                    ? (<button className='movie-card__close-icon button-hovered' onClick={handleDisLikeClick}></button>
                     ) : (
-                        <button className={`movie-card__like button-hovered ${cardLikeButtonClassNames}`} onClick={handleLikeClick}>
-                            <span className='movie-card__like-mask'></span>
-                        </button>
+                        <>
+                            {isLiked
+                                ? (<button className='movie-card__like button-hovered movie-card__like_on movie-card__animation' onClick={handleDisLikeClick}>
+                                    <span className='movie-card__like-mask'></span>
+                                </button>
+                                ) : (<button className='movie-card__like button-hovered movie-card__like_off' onClick={handleLikeClick}>
+                                    <span className='movie-card__like-mask'></span>
+                                </button>)
+                            }
+                        </>
                     )
                 }
             </div>

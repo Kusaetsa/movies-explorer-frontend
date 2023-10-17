@@ -13,11 +13,17 @@
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #424242;
-    color: #fff;
     font-size: 14px;
     font-weight: 500;
     height: 30px;
     cursor: pointer;
+    color: #fff;
+}
+
+
+
+.input__input_invalid {
+    color: #EE3465;
 }
 
 .input__input::placeholder {
@@ -36,4 +42,5 @@
     font-weight: 400;
     margin: 6px 0;
     height: 12px;
+    color: #EE3465;;
 }

@@ -1,3 +1,14 @@
+@keyframes hide-message {
+    from {
+        visibility: visible;
+        opacity: 1;
+    }
+    to {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
 .profile {
     display: flex;
     box-sizing: border-box;
@@ -29,7 +40,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    height: 71.5%;
+    height: 72%;
     width: 100%;
     justify-content: space-between;
 }
@@ -37,14 +48,14 @@
 .profile__inputs-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: 1fr 12px 1fr 12px;
     width: 100%;
 }
 
 .profile__input-label {
     font-size: 11px;
     font-weight: 500;
-    padding: 16px 0;
+    padding: 17px 0 5px;
 }
 
 .profile__input {
@@ -54,18 +65,35 @@
     background-color: transparent;
     border: none;
     text-align: right;
+    padding: 17px 0 5px;
+}
+
+.profile__input_invalid-name {
+    color: #EE3465;
+}
+
+.profile__input_invalid-email {
+    color: #EE3465;
 }
 
 .profile__input:focus {
     outline: none;
 }
 
-.profile__input:first-of-type {
-    border-bottom: 1px solid #424242;
+.profile__input:last-of-type {
+    border-top: 1px solid #424242;
 }
 
-.profile__input-label:first-of-type {
-    border-bottom: 1px solid #424242;
+.profile__input-label:last-of-type {
+    border-top: 1px solid #424242;
+}
+
+.profile__input-error {
+    grid-column: 1/ span 2;
+    font-size: 9px;
+    font-weight: 400;    
+    color: #EE3465;
+    text-align: center;
 }
 
 .profile__inputs-border {
@@ -89,20 +117,23 @@
 
 .profile__edit-button {
     border: none;
-    cursor: pointer;
-    color: #fff;
     background-color: transparent;
     font-size: 13px;
     font-weight: 400;
     margin-bottom: 16px;
+    display: none;
+    transition: all .2s;
 }
 
 .profile__edit-button_inactive {
     display: inline-block;
+    color: #424242;;
 }
 
 .profile__edit-button_active {
-    display: none;
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
 }
 
 .profile__button {
@@ -110,7 +141,6 @@
     height: 45px;
     border-radius: 3px;
     border: none;
-    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
@@ -122,9 +152,10 @@
 }
 
 .profile__button_inactive {
-    color: #C2C2C2;
-    background-color: #F8F8F8;
+    color: #000;
+    background-color: #2F2F2F;
     display: flex;
+    cursor: auto;
 }
 
 .profile__button_active {
@@ -141,12 +172,25 @@
     font-weight: 500;
 }
 
-.profile__error {
+.profile__api-message {
     position: absolute;
     bottom: 65px;
-    color: #FF004C;
     font-size: 11px;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .1s;
+}
+
+.profile__api-message_error {
+    color: #FF004C;
+    visibility: visible;
+    opacity: 1;
+}
+
+.profile__api-message_succsess {
+    color: #fff;
+    visibility: visible;
+    opacity: 1;
 }
 
 

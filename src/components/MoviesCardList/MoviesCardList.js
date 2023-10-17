@@ -1,38 +1,51 @@
 import React from 'react';
 import './MoviesCardList.css'
 import MoviesCard from '../MoviesCard/MoviesCard';
+import Preloader from '../Preloader/Preloader';
 
+function MoviesCardList({
+    cards,
+    isLoading,
+    isUnsuccessfulSearch,
+    showMovies,
+    handleLikeMovieClick,
+    handleDislikeMovieClick,
+    savedMovies,
+    isSavedMoviesList }) {
 
-function MoviesCardList({ cards, isSavedMovies, handleSavedMovies }) {
-    
-    const [isLiked, setIsLiked] = React.useState(false);
-    const moviesContainerClassNames = ( 
-        isSavedMovies ? 'movies-list__container movies-list__saved-height' : 'movies-list__container'
-      );
-
-    function handleLike() {
-        setIsLiked(true);
-    }
+    function durationInHours(duration) {
+        const hours = Math.floor(duration / 60);
+        const minutes = duration % 60;
+        return `${hours}ч ${minutes}м`;
+    };
 
     return (
         <section className='movies-list'>
-            <div className={moviesContainerClassNames}>
-            {
-                cards.map((card) => (
-                    <MoviesCard 
-                        key={card.id}
-                        card={card}
-                        title={card.title}
-                        duration={card.duration}
-                        isLiked={isLiked}
-                        handleLike={handleLike}
-                        isSavedMovies={isSavedMovies}
-                        handleSavedMovies={handleSavedMovies}     
-                    />
-                ))
-            }
+            <Preloader
+                isLoading={isLoading}
+            />
+            {isUnsuccessfulSearch ? <div className='movie-list__message'>{isUnsuccessfulSearch}</div> : null}
+
+            <div className='movies-list__container'>
+                {
+                    cards.slice(0, showMovies).map((card) => (
+                        <MoviesCard
+                            key={card.id}
+                            card={card}
+                            title={card.nameRU}
+                            picture={card.image.url}
+                            duration={durationInHours(card.duration)}
+                            trailerLink={card.trailerLink}
+                            handleLikeMovieClick={handleLikeMovieClick}
+                            handleDislikeMovieClick={handleDislikeMovieClick}
+                            isSavedMoviesList={isSavedMoviesList}
+                            savedMovies={savedMovies}
+                        />
+                    ))
+                }
+
             </div>
-            {isSavedMovies ? <div className='movies-list__devider'></div> : ''}
+            {isSavedMoviesList ? <div className='movies-list__devider'></div> : null}
         </section>
     )
 }

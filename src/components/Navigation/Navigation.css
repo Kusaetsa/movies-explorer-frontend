@@ -48,6 +48,10 @@
     display: none;
 }
 
+.navigation__close-icon {
+    display: none;
+}
+
 .navigation__links-container {
     display: flex;
     align-items: center;
@@ -60,6 +64,13 @@
     font-weight: 400;
     text-decoration: none;
     margin: 0;
+}
+
+.navigation__link_active {
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
 }
 
 .navigation__link_main {
@@ -153,6 +164,7 @@
     }
 
     .navigation__link_focus {
+        font-size: 18px;
         padding-bottom: 4px;
         border-bottom: 2px solid #fff;
     }
